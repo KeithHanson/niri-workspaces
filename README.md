@@ -13,7 +13,6 @@ This is packaged as an Omarchy shell plugin. It also ships an optional Hyprland 
 
 <video src="assets/niri-workspaces-demo.mp4" controls muted></video>
 
-If your Markdown viewer does not render embedded video, open [`assets/niri-workspaces-demo.mp4`](assets/niri-workspaces-demo.mp4) directly.
 
 ## Install from a git URL
 
