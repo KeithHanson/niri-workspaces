@@ -12,7 +12,7 @@ This is packaged as an Omarchy shell plugin. It also ships an optional Hyprland 
 ## Install from a git URL
 
 ```bash
-omarchy plugin add https://github.com/YOURNAME/niri-workspaces.git --enable
+omarchy plugin add https://github.com/KeithHanson/niri-workspaces.git --enable
 cd ~/.config/omarchy/plugins/niri-workspaces
 ./install.sh
 ```
