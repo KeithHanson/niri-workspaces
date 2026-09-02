@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "niri-workspaces",
+  "name": "Niri Workspaces",
+  "version": "0.1.0",
+  "author": "Keith Hanson",
+  "license": "MIT",
+  "description": "Niri-inspired vertical workspace dots, hot corner, and overview for Omarchy/Hyprland.",
+  "kinds": ["service"],
+  "activation": "on-startup",
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "NiriWorkspaces.qml"
+  },
+  "omarchy": {
+    "clonePaths": [
+      { "source": "overview", "target": "overview" },
+      { "source": "scripts", "target": "scripts" },
+      { "source": "hypr", "target": "hypr" },
+      { "source": "README.md", "target": "README.md" },
+      { "source": "LICENSE", "target": "LICENSE" }
+    ]
+  }
+}

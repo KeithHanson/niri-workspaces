@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+state_dir="$HOME/.local/state/omarchy/windows"
+mkdir -p "$state_dir"
+
+active=$(hyprctl activewindow -j)
+address=$(jq -r '.address // empty' <<<"$active")
+monitor_id=$(jq -r '.monitor // empty' <<<"$active")
+fullscreen=$(jq -r '.fullscreen // 0' <<<"$active")
+current_width=$(jq -r '.size[0] // empty' <<<"$active")
+
+[[ -n "$address" && -n "$monitor_id" && -n "$current_width" ]] || exit 1
+
+# If the old binding left this window in Hyprland's maximized/fullscreen state,
+# leave that state first so normal focus/navigation keeps working.
+if [[ "$fullscreen" != "0" ]]; then
+  hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = "maximized" })' >/dev/null || true
+  sleep 0.05
+  active=$(hyprctl activewindow -j)
+  current_width=$(jq -r '.size[0] // empty' <<<"$active")
+fi
+
+monitor=$(hyprctl monitors -j | jq -r --argjson id "$monitor_id" '.[] | select(.id == $id)')
+monitor_width=$(jq -r '.width' <<<"$monitor")
+monitor_scale=$(jq -r '.scale' <<<"$monitor")
+[[ -n "$monitor_width" && "$monitor_width" != "null" && -n "$monitor_scale" && "$monitor_scale" != "null" ]] || exit 1
+
+# Hyprland client sizes are in logical pixels, while monitor width is physical.
+# Match the configured scrolling column width. 0.97 leaves a little visual air.
+target_width=$(awk -v w="$monitor_width" -v s="$monitor_scale" 'BEGIN { printf "%d", (w / s) * 0.97 }')
+state_file="$state_dir/full-width-${address}.width"
+
+abs() { local n=$1; (( n < 0 )) && echo $(( -n )) || echo "$n"; }
+resize_by() { hyprctl dispatch "hl.dsp.window.resize({ x = $1, y = 0, relative = true })" >/dev/null; }
+
+# Toggle behavior: if already approximately full-width, restore the previous
+# width from before this script widened it.
+if [[ -f "$state_file" ]] && (( $(abs $((current_width - target_width))) <= 48 )); then
+  previous=$(<"$state_file")
+  if [[ "$previous" =~ ^[0-9]+$ ]]; then
+    resize_by $((previous - current_width))
+    rm -f "$state_file"
+    exit 0
+  fi
+fi
+
+printf '%s\n' "$current_width" >"$state_file"
+resize_by $((target_width - current_width))

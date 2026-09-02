@@ -1,0 +1,49 @@
+{
+  "overview": {
+    "rows": 10,
+    "columns": 1,
+    "scale": 0.075,
+    "workspaceWidthScale": 0.56,
+    "workspaceHeightScale": 0.075,
+    "hideEmptyRows": false,
+    "showSpecialWorkspaces": false,
+    "closeOnFocusLoss": true,
+    "previewsEnabled": true,
+    "previewMode": "live",
+    "workspaceSpacing": 6,
+    "backgroundPadding": 8,
+    "workspaceNumberBaseSize": 90,
+    "effects": {
+      "enableBlur": true,
+      "enableBackdrop": true,
+      "backdropOpacity": 0.35,
+      "panelOpacity": 0.82,
+      "workspaceOpacity": 0.72,
+      "windowOverlayOpacity": 0.16,
+      "glassMode": true,
+      "glassTintStrength": 0.25,
+      "glassBorderOpacity": 0.55,
+      "glassShineOpacity": 0.08
+    }
+  },
+  "position": {
+    "topMargin": 30
+  },
+  "windowPreview": {
+    "showIcons": true,
+    "iconToWindowRatio": 0.22,
+    "iconToWindowRatioCompact": 0.35,
+    "inactiveMonitorOpacity": 0.5,
+    "cropToFill": false
+  },
+  "appearance": {
+    "colorSource": "omarchy",
+    "font": {
+      "family": {
+        "main": "monospace",
+        "title": "monospace",
+        "expressive": "monospace"
+      }
+    }
+  }
+}
