@@ -11,7 +11,7 @@ This is packaged as an Omarchy shell plugin. It also ships an optional Hyprland 
 
 ## Demo
 
-<video src="assets/niri-workspaces-demo.mp4" controls muted></video>
+![Niri Workspaces demo](assets/niri-workspaces-demo.gif)
 
 
 ## Install from a git URL
