@@ -9,6 +9,12 @@ Niri-inspired workspace UX for Omarchy/Hyprland:
 
 This is packaged as an Omarchy shell plugin. It also ships an optional Hyprland config snippet because Omarchy plugins do not own compositor keybindings directly; Omarchy's convention is plugin IPC plus Hyprland `o.bind(...)` entries.
 
+## Demo
+
+<video src="assets/niri-workspaces-demo.mp4" controls muted></video>
+
+If your Markdown viewer does not render embedded video, open [`assets/niri-workspaces-demo.mp4`](assets/niri-workspaces-demo.mp4) directly.
+
 ## Install from a git URL
 
 ```bash
